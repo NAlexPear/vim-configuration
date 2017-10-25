@@ -16,6 +16,11 @@ set expandtab
 set smartindent
 set autoindent
 set showmatch
+set laststatus=2
+
+let NERDTreeShowHidden=1
 
 map <leader>s :source ~/.vimrc<CR>
-map <leader>t :NERDTreeToggle<CR>
+nmap <leader>t :NERDTreeToggle<CR>
+nmap <leader>f :NERDTreeFind<CR>
+
