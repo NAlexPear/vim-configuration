@@ -18,3 +18,4 @@ set autoindent
 set showmatch
 
 map <leader>s :source ~/.vimrc<CR>
+map <leader>t :NERDTreeToggle<CR>
