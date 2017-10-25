@@ -1,0 +1,5 @@
+filetype on
+syntax on
+colorscheme Tomorrow-Night
+
+hi Normal ctermbg=none
