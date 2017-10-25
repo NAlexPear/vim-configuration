@@ -1,5 +1,20 @@
+execute pathogen#infect()
+
 filetype on
+filetype indent on
 syntax on
 colorscheme Tomorrow-Night
-
 hi Normal ctermbg=none
+
+set number
+set hidden
+set history=100
+set nowrap
+set tabstop=2
+set shiftwidth=2
+set expandtab
+set smartindent
+set autoindent
+set showmatch
+
+map <leader>s :source ~/.vimrc<CR>
