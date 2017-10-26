@@ -4,3 +4,15 @@
 [submodule "bundle/vim-multiple-cursors"]
 	path = bundle/vim-multiple-cursors
 	url = git@github.com:terryma/vim-multiple-cursors.git
+[submodule "bundle/ghcmod-vim"]
+	path = bundle/ghcmod-vim
+	url = git@github.com:eagletmt/ghcmod-vim.git
+[submodule "bundle/vimproc.vim"]
+	path = bundle/vimproc.vim
+	url = git@github.com:Shougo/vimproc.vim.git
+[submodule "bundle/sytastic"]
+	path = bundle/sytastic
+	url = git@github.com:scrooloose/syntastic.git
+[submodule "bundle/syntastic"]
+	path = bundle/syntastic
+	url = git@github.com:scrooloose/syntastic.git
