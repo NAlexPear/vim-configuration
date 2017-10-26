@@ -34,3 +34,9 @@
 [submodule "bundle/neocomplete.vim"]
 	path = bundle/neocomplete.vim
 	url = git@github.com:Shougo/neocomplete.vim.git
+[submodule "/home/alex/.vim/bundle/auto-pairs"]
+	path = /home/alex/.vim/bundle/auto-pairs
+	url = git@github.com:jiangmiao/auto-pairs.git
+[submodule "bundle/vim-togglecursor"]
+	path = bundle/vim-togglecursor
+	url = git@github.com:jszakmeister/vim-togglecursor.git
