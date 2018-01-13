@@ -25,6 +25,8 @@ set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 
+let g:sql_type_default = 'pgsql'
+
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 0
 let g:syntastic_check_on_open = 0
@@ -45,8 +47,6 @@ endif
 let g:rustfmt_autosave = 1
 
 let g:haskellmode_completion_ghc = 1
-autocmd FileType haskell setlocal omnifunc=necoghc#omnifunc
-
 let g:haskell_tabular = 1
 
 vmap a= :Tabularize /=<CR>
@@ -58,6 +58,10 @@ map <leader>s :source ~/.vimrc<CR>
 nmap <leader>t :NERDTreeToggle<CR>
 nmap <leader>f :NERDTreeFind<CR>
 map <leader>st :SyntasticToggleMode<CR>
+map <leader>x :x
+map <leader>q :q
+map <leader>w :w
+
 map <silent>tw :GhcModTypeInsert<CR>
 map <silent>ts :GhcModSplitFunCase<CR>
 map <silent>tq :GhcModType<CR>
@@ -67,3 +71,6 @@ if executable('ag')
     set grepformat=%f:%l:%c%m
 endif
 
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | endif
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
