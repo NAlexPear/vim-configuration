@@ -18,6 +18,7 @@ set expandtab
 set smartindent
 set autoindent
 set showmatch
+set showcmd
 
 set laststatus=2
 set statusline+=%#warningmsg#
@@ -41,6 +42,8 @@ else " no gui
   endif
 endif
 
+let g:rustfmt_autosave = 1
+
 let g:haskellmode_completion_ghc = 1
 autocmd FileType haskell setlocal omnifunc=necoghc#omnifunc
 
@@ -50,6 +53,7 @@ vmap a= :Tabularize /=<CR>
 vmap a; :Tabularize /::<CR>
 vmap a- :Tabularize /-><CR>i
 
+map <SPACE> <leader>
 map <leader>s :source ~/.vimrc<CR>
 nmap <leader>t :NERDTreeToggle<CR>
 nmap <leader>f :NERDTreeFind<CR>
@@ -62,3 +66,4 @@ if executable('ag')
     set grepprg=ag\ --nogroup\ --nocolor\ --column
     set grepformat=%f:%l:%c%m
 endif
+
