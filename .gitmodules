@@ -39,4 +39,4 @@
 	url = git@github.com:jiangmiao/auto-pairs.git
 [submodule "bundle/vim-togglecursor"]
 	path = bundle/vim-togglecursor
-	url = git@github.com:jszakmeister/vim-togglecursor.git
+	url = git@github.com:NAlexPear/vim-togglecursor.git
