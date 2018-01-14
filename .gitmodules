@@ -46,3 +46,6 @@
 [submodule "bundle/vim-togglecursor"]
 	path = bundle/vim-togglecursor
 	url = git@github.com:NAlexPear/vim-togglecursor.git
+[submodule "bundle/vim-surround"]
+	path = bundle/vim-surround
+	url = git://github.com/tpope/vim-surround.git

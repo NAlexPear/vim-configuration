@@ -7,6 +7,7 @@ hi Normal ctermbg=none
 
 set nocompatible
 set number
+set relativenumber
 set hidden
 set history=100
 set nowrap
