@@ -28,8 +28,9 @@ set statusline+=%*
 
 let g:sql_type_default = 'pgsql'
 
+let g:syntastic_rust_checkers = ['cargo']
 let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 0
+let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 0
 let g:syntastic_check_on_wq = 0
 
@@ -46,7 +47,7 @@ else " no gui
 endif
 
 let g:rustfmt_autosave = 1
-
+let g:racer_cmd = "$HOME/.cargo/bin/racer"
 let g:haskellmode_completion_ghc = 1
 let g:haskell_tabular = 1
 
