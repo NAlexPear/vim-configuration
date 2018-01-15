@@ -48,6 +48,9 @@ endif
 
 let g:rustfmt_autosave = 1
 let g:racer_cmd = "$HOME/.cargo/bin/racer"
+
+let g:elm_setup_keybindings = 0
+
 let g:haskellmode_completion_ghc = 1
 let g:haskell_tabular = 1
 
