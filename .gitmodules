@@ -64,3 +64,15 @@
 [submodule "bundle/ale"]
 	path = bundle/ale
 	url = git@github.com:w0rp/ale.git
+[submodule "bundle/Spacegray.vim"]
+	path = bundle/Spacegray.vim
+	url = git@github.com:ajh17/Spacegray.vim.git
+[submodule "bundle/vim-javascript"]
+	path = bundle/vim-javascript
+	url = git@github.com:pangloss/vim-javascript.git
+[submodule "bundle/vim-jsx"]
+	path = bundle/vim-jsx
+	url = git@github.com:mxw/vim-jsx.git
+[submodule "bundle/emmet-vim"]
+	path = bundle/emmet-vim
+	url = git@github.com:mattn/emmet-vim.git
