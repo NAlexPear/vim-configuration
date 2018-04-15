@@ -37,6 +37,10 @@ else " no gui
   endif
 endif
 
+let g:ale_fixers = {
+\   'javascript': ['eslint'],
+\}
+let g:ale_fix_on_save = 1
 let g:rustfmt_autosave = 1
 let g:racer_cmd = "$HOME/.cargo/bin/racer"
 
@@ -53,7 +57,6 @@ map <SPACE> <leader>
 map <leader>s :source ~/.vimrc<CR>
 nmap <leader>t :NERDTreeToggle<CR>
 nmap <leader>f :NERDTreeFind<CR>
-map <leader>st :SyntasticToggleMode<CR>
 map <leader>x :x
 map <leader>q :q
 map <leader>w :w
