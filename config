@@ -43,11 +43,16 @@ let g:user_emmet_settings = {
     \      'extends' : 'jsx',
     \  },
   \}
+
 let g:ale_fixers = {
 \   'javascript': ['eslint'],
 \}
-
+let g:ale_pattern_options = {
+\   '.*\amp.html$': {'ale_enabled': 0},
+\}
 let g:ale_fix_on_save = 1
+let g:ale_sign_column_always = 1
+
 let g:rustfmt_autosave = 1
 let g:racer_cmd = "$HOME/.cargo/bin/racer"
 
