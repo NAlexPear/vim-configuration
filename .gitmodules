@@ -1,30 +1,9 @@
-[submodule "bundle/nerdtree"]
-	path = bundle/nerdtree
-	url = git@github.com:scrooloose/nerdtree.git
 [submodule "bundle/vim-multiple-cursors"]
 	path = bundle/vim-multiple-cursors
 	url = git@github.com:terryma/vim-multiple-cursors.git
-[submodule "bundle/ghcmod-vim"]
-	path = bundle/ghcmod-vim
-	url = git@github.com:eagletmt/ghcmod-vim.git
-[submodule "bundle/vimproc.vim"]
-	path = bundle/vimproc.vim
-	url = git@github.com:Shougo/vimproc.vim.git
 [submodule "bundle/lightline.vim"]
 	path = bundle/lightline.vim
 	url = git@github.com:itchyny/lightline.vim.git
-[submodule "bundle/neco-ghc"]
-	path = bundle/neco-ghc
-	url = git@github.com:eagletmt/neco-ghc.git
-[submodule "bundle/tabular"]
-	path = bundle/tabular
-	url = git@github.com:godlygeek/tabular.git
-[submodule "bundle/supertab"]
-	path = bundle/supertab
-	url = git@github.com:ervandew/supertab.git
-[submodule "bundle/nerdcommenter"]
-	path = bundle/nerdcommenter
-	url = git@github.com:scrooloose/nerdcommenter.git
 [submodule "bundle/neocomplete.vim"]
 	path = bundle/neocomplete.vim
 	url = git@github.com:Shougo/neocomplete.vim.git
@@ -37,9 +16,6 @@
 [submodule "bundle/pgsql.vim"]
 	path = bundle/pgsql.vim
 	url = git@github.com:lifepillar/pgsql.vim.git
-[submodule "bundle/ctrlp.vim"]
-	path = bundle/ctrlp.vim
-	url = git@github.com:ctrlpvim/ctrlp.vim.git
 [submodule "bundle/vim-surround"]
 	path = bundle/vim-surround
 	url = git://github.com/tpope/vim-surround.git
@@ -49,12 +25,6 @@
 [submodule "bundle/elm-vim"]
 	path = bundle/elm-vim
 	url = git@github.com:ElmCast/elm-vim.git
-[submodule "bundle/typescript-vim"]
-	path = bundle/typescript-vim
-	url = https://github.com/leafgarland/typescript-vim.git
-[submodule "bundle/vim-jsx-typescript"]
-	path = bundle/vim-jsx-typescript
-	url = git@github.com:peitalin/vim-jsx-typescript.git
 [submodule "bundle/ale"]
 	path = bundle/ale
 	url = git@github.com:w0rp/ale.git
@@ -70,6 +40,3 @@
 [submodule "bundle/emmet-vim"]
 	path = bundle/emmet-vim
 	url = git@github.com:mattn/emmet-vim.git
-[submodule "bundle/vim-togglecursor"]
-	path = bundle/vim-togglecursor
-	url = git@github.com:jszakmeister/vim-togglecursor.git

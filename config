@@ -2,7 +2,7 @@ execute pathogen#infect()
 
 filetype plugin indent on
 syntax on
-colorscheme Spacegray
+colorscheme spacegray
 hi Normal ctermbg=none
 
 set nocompatible
@@ -20,68 +20,39 @@ set smartindent
 set autoindent
 set showmatch
 set showcmd
+set ttimeoutlen=50
+
 
 set laststatus=2
 
 let g:sql_type_default = 'pgsql'
 
-let NERDTreeShowHidden=1
-
-let g:SuperTabDefaultCompletionType = '<c-x><c-o>'
-
-if has("gui_running")
-  imap <c-space> <c-r>=SuperTabAlternateCompletion("\<lt>c-x>\<lt>c-o>")<cr>
-else " no gui
-  if has("unix")
-    inoremap <Nul> <c-r>=SuperTabAlternateCompletion("\<lt>c-x>\<lt>c-o>")<cr>
-  endif
-endif
-
 let g:user_emmet_leader_key='<Tab>'
 let g:user_emmet_settings = {
-  \  'javascript.jsx' : {
-    \      'extends' : 'jsx',
-    \  },
-  \}
+\  'javascript.jsx' : {
+  \      'extends' : 'jsx',
+  \  },
+\}
+
 
 let g:ale_fixers = {
+\   'rust': ['rustfmt'],
 \   'javascript': ['eslint'],
 \}
 let g:ale_pattern_options = {
 \   '.*\amp.html$': {'ale_enabled': 0},
 \}
-let g:ale_fix_on_save = 1
-let g:ale_sign_column_always = 1
 
-let g:rustfmt_autosave = 1
-let g:racer_cmd = "$HOME/.cargo/bin/racer"
+let g:ale_sign_column_always = 1
 
 let g:elm_setup_keybindings = 0
 
-let g:haskellmode_completion_ghc = 1
-let g:haskell_tabular = 1
-
-vmap a= :Tabularize /=<CR>
-vmap a; :Tabularize /::<CR>
-vmap a- :Tabularize /-><CR>i
-
 map <SPACE> <leader>
 map <leader>s :source ~/.vimrc<CR>
-nmap <leader>t :NERDTreeToggle<CR>
-nmap <leader>f :NERDTreeFind<CR>
 map <leader>x :x
 map <leader>q :q
 map <leader>w :w
 
-map <silent>tw :GhcModTypeInsert<CR>
-map <silent>ts :GhcModSplitFunCase<CR>
-map <silent>tq :GhcModType<CR>
-
-if executable('ag')
-    set grepprg=ag\ --nogroup\ --nocolor\ --column
-    set grepformat=%f:%l:%c%m
-endif
-
-autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | endif
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+let &t_SI = "\<Esc>[6 q"
+let &t_SR = "\<Esc>[4 q"
+let &t_EI = "\<Esc>[2 q"
