@@ -21,7 +21,7 @@ set autoindent
 set showmatch
 set showcmd
 set ttimeoutlen=50
-
+set termguicolors
 
 set laststatus=2
 
