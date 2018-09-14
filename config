@@ -56,3 +56,7 @@ map <leader>w :w
 let &t_SI = "\<Esc>[6 q"
 let &t_SR = "\<Esc>[4 q"
 let &t_EI = "\<Esc>[2 q"
+
+  if &term =~ "xterm" || &term =~ "screen"
+    let g:CommandTCancelMap = ['<ESC>', '<C-c>']
+endif
