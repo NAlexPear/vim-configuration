@@ -4,6 +4,7 @@ filetype plugin indent on
 syntax on
 colorscheme spacegray
 hi Normal ctermbg=none
+hi Signcolumn ctermbg=none
 
 set nocompatible
 set number
@@ -21,9 +22,11 @@ set autoindent
 set showmatch
 set showcmd
 set ttimeoutlen=50
-set termguicolors
-
 set laststatus=2
+set noerrorbells
+
+
+set omnifunc=syntaxcomplete#Complete
 
 let g:sql_type_default = 'pgsql'
 
@@ -34,6 +37,9 @@ let g:user_emmet_settings = {
   \  },
 \}
 
+let g:ale_linters = {
+\   'rust': ['rls'],
+\}
 
 let g:ale_fixers = {
 \   'rust': ['rustfmt'],
@@ -44,6 +50,7 @@ let g:ale_pattern_options = {
 \}
 
 let g:ale_sign_column_always = 1
+let g:ale_fix_on_save = 1
 
 let g:elm_setup_keybindings = 0
 
@@ -57,6 +64,7 @@ let &t_SI = "\<Esc>[6 q"
 let &t_SR = "\<Esc>[4 q"
 let &t_EI = "\<Esc>[2 q"
 
-  if &term =~ "xterm" || &term =~ "screen"
-    let g:CommandTCancelMap = ['<ESC>', '<C-c>']
+if &term =~ "xterm" || &term =~ "screen"
+  let g:CommandTCancelMap = ['<ESC>', '<C-c>']
 endif
+
