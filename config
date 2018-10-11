@@ -32,11 +32,10 @@ set omnifunc=syntaxcomplete#Complete
 
 let g:sql_type_default = 'pgsql'
 
-let g:user_emmet_leader_key='<Tab>'
 let g:user_emmet_settings = {
 \  'javascript.jsx' : {
-  \      'extends' : 'jsx',
-  \  },
+\      'extends' : 'jsx',
+\  },
 \}
 
 let g:ale_linters = {
@@ -44,9 +43,11 @@ let g:ale_linters = {
 \}
 
 let g:ale_fixers = {
-\   'rust': ['rustfmt'],
 \   'javascript': ['eslint'],
+\   'python': ['yapf'],
+\   'rust': ['rustfmt'],
 \}
+
 let g:ale_pattern_options = {
 \   '.*\amp.html$': {'ale_enabled': 0},
 \}
