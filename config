@@ -24,6 +24,8 @@ set showcmd
 set ttimeoutlen=50
 set laststatus=2
 set noerrorbells
+set wildmenu
+set wildmode=list:longest
 
 
 set omnifunc=syntaxcomplete#Complete
