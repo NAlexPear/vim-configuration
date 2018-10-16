@@ -63,6 +63,8 @@ map <leader>x :x
 map <leader>q :q
 map <leader>w :w
 
+inoremap <Tab> <C-n>
+
 let &t_SI = "\<Esc>[6 q"
 let &t_SR = "\<Esc>[4 q"
 let &t_EI = "\<Esc>[2 q"
