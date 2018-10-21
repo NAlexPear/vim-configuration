@@ -3,8 +3,11 @@ execute pathogen#infect()
 filetype plugin indent on
 syntax on
 colorscheme spacegray
+
 hi Normal ctermbg=none
-hi Signcolumn ctermbg=none
+hi SignColumn ctermbg=none
+hi VertSplit guibg=Background
+hi NonText guifg=Background
 
 set nocompatible
 set number
@@ -26,9 +29,11 @@ set laststatus=2
 set noerrorbells
 set wildmenu
 set wildmode=list:longest
-
-
-set omnifunc=syntaxcomplete#Complete
+set grepprg=rg\ -S\ --vimgrep
+set grepformat^=%f:%l:%c:%m
+set splitbelow
+set splitright
+set fillchars+=vert:\|
 
 let g:sql_type_default = 'pgsql'
 
@@ -54,6 +59,12 @@ let g:ale_pattern_options = {
 
 let g:ale_sign_column_always = 1
 let g:ale_fix_on_save = 1
+let g:ale_completion_enabled = 1
+
+hi clear ALEErrorSign
+hi clear ALEWarningSign
+hi ALEErrorSign guifg=#C5735E
+hi ALEWarningSign guifg=#FFAF00
 
 let g:elm_setup_keybindings = 0
 
@@ -63,8 +74,6 @@ map <leader>x :x
 map <leader>q :q
 map <leader>w :w
 
-inoremap <Tab> <C-n>
-
 let &t_SI = "\<Esc>[6 q"
 let &t_SR = "\<Esc>[4 q"
 let &t_EI = "\<Esc>[2 q"
@@ -72,4 +81,3 @@ let &t_EI = "\<Esc>[2 q"
 if &term =~ "xterm" || &term =~ "screen"
   let g:CommandTCancelMap = ['<ESC>', '<C-c>']
 endif
-
