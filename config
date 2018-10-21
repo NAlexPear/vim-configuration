@@ -29,6 +29,7 @@ set laststatus=2
 set noerrorbells
 set wildmenu
 set wildmode=list:longest
+set wildignorecase
 set grepprg=rg\ -S\ --vimgrep
 set grepformat^=%f:%l:%c:%m
 set splitbelow
