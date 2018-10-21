@@ -35,9 +35,14 @@ set grepformat^=%f:%l:%c:%m
 set splitbelow
 set splitright
 set fillchars+=vert:\|
+set completeopt=longest,menuone
+set shell=zsh
 
 let g:sql_type_default = 'pgsql'
+let g:elm_setup_keybindings = 0
 
+map <tab> <nop>
+let g:user_emmet_leader_key='<Tab>'
 let g:user_emmet_settings = {
 \  'javascript.jsx' : {
 \      'extends' : 'jsx',
@@ -45,8 +50,9 @@ let g:user_emmet_settings = {
 \}
 
 let g:ale_linters = {
+\   'javascript': ['eslint', 'tsserver'],
 \   'python': ['flake8'],
-\   'rust': ['rls'],
+\   'rust': ['rustc'],
 \}
 
 let g:ale_fixers = {
@@ -61,14 +67,11 @@ let g:ale_pattern_options = {
 
 let g:ale_sign_column_always = 1
 let g:ale_fix_on_save = 1
-let g:ale_completion_enabled = 1
 
 hi clear ALEErrorSign
 hi clear ALEWarningSign
 hi ALEErrorSign guifg=#C5735E
 hi ALEWarningSign guifg=#FFAF00
-
-let g:elm_setup_keybindings = 0
 
 map <SPACE> <leader>
 map <leader>s :source ~/.vimrc<CR>
