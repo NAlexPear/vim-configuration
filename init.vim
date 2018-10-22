@@ -76,6 +76,8 @@ map <leader>s :source ~/.config/nvim/init.vim<CR>
 map <leader>x :x
 map <leader>q :q
 map <leader>w :w
+nmap <leader>aj :ALENext<CR>
+nmap <leader>ak :ALEPrevious<CR>
 
 
 " Language Servers
