@@ -1,7 +1,33 @@
 " INIT
 " ====================
 
-execute pathogen#infect()
+if empty(glob('~/.config/nvim/autoload/plug.vim'))
+  silent !curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall --sync | source ~/.config/nvim/init.vim
+endif
+
+call plug#begin('~/.config/nvim/plugged')
+  Plug 'ajh17/Spacegray.vim'
+  Plug 'autozimu/LanguageClient-neovim', {
+  \  'branch': 'next',
+  \  'do': 'bash install.sh',
+  \}
+  Plug 'itchyny/lightline.vim'
+  Plug 'jiangmiao/auto-pairs'
+  Plug 'pangloss/vim-javascript'
+  Plug 'mattn/emmet-vim'
+  Plug 'mxw/vim-jsx'
+  Plug 'lifepillar/pgsql.vim'
+  Plug 'rust-lang/rust.vim'
+  Plug 'Shougo/deoplete.nvim', {
+  \  'do': ':UpdateRemotePlugins'
+  \}
+  Plug 'tpope/vim-commentary'
+  Plug 'tpope/vim-surround'
+  Plug 'wincent/command-t'
+  Plug 'w0rp/ale'
+call plug#end()
 
 " THEME
 " =====================
@@ -19,7 +45,7 @@ hi NonText guifg=Background
 " CORE 
 " =====================
 
-set completeopt=longest,menuone
+set completeopt=longest,menuone,noinsert
 set expandtab
 set fillchars+=vert:\|
 set grepformat^=%f:%l:%c:%m
@@ -44,6 +70,7 @@ set wildmode=list:longest
 " KEYMAPS
 " ===============
 
+inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 map <SPACE> <leader>
 map <leader>s :source ~/.config/nvim/init.vim<CR>
 map <leader>x :x
@@ -51,9 +78,29 @@ map <leader>q :q
 map <leader>w :w
 
 
-
-" PLUGIN 
+" Language Servers
 " ================
+
+set completefunc=LanguageClient#complete
+
+let g:LanguageClient_diagnosticsEnable = 0
+let g:LanguageClient_serverCommands = {
+\  'rust': ['rustup', 'run', 'nightly', 'rls'],
+\  'javascript': ['typescript-language-server', '--stdio'],
+\  'javascript.jsx': ['typescript-language-server', '--stdio'],
+\}
+
+
+
+" PLUGINS
+" ================
+
+" Deoplete
+
+let g:deoplete#enable_at_startup = 1
+call deoplete#custom#option({
+\  'auto_complete_delay': 0,
+\})
 
 " Emmet
 imap <expr> <tab> emmet#expandAbbrIntelligent("\<tab>")
@@ -83,6 +130,8 @@ let g:ale_pattern_options = {
 
 let g:ale_sign_column_always = 1
 let g:ale_fix_on_save = 1
+let g:ale_completion_enabled = 0
+let g:ale_sign_warning = "●"
 
 hi clear ALEErrorSign
 hi clear ALEWarningSign
@@ -98,13 +147,14 @@ endif
 " LANGUAGES 
 " ==================
 
-" SQL
-let g:sql_type_default = 'pgsql'
-
 " Elm
 let g:elm_setup_keybindings = 0
 
 " Ruby
 let g:ruby_host_prog = '~/.gem/ruby/2.5.0/bin/neovim-ruby-host'
+
+" SQL
+let g:sql_type_default = 'pgsql'
+
 
 
