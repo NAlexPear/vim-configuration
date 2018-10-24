@@ -146,6 +146,20 @@ if &term =~ "xterm" || &term =~ "screen"
 endif
 
 
+" Lightline
+let g:lightline = {
+\'component_function': {
+\    'filename': 'LightLineFilename'
+\  }
+\}
+
+function! LightLineFilename()
+  let parent = split(expand('%:p:h'), '/')[-1]
+
+  return join([parent, expand('%:t')], '/')
+endfunction
+
+
 " LANGUAGES 
 " ==================
 
