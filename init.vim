@@ -13,6 +13,7 @@ call plug#begin('~/.config/nvim/plugged')
   \  'branch': 'next',
   \  'do': 'bash install.sh',
   \}
+  Plug 'ElmCast/elm-vim'
   Plug 'itchyny/lightline.vim'
   Plug 'jiangmiao/auto-pairs'
   Plug 'pangloss/vim-javascript'
@@ -98,7 +99,6 @@ let g:LanguageClient_serverCommands = {
 " ================
 
 " Deoplete
-
 let g:deoplete#enable_at_startup = 1
 call deoplete#custom#option({
 \  'auto_complete_delay': 0,
@@ -141,10 +141,7 @@ hi ALEErrorSign guifg=#C5735E
 hi ALEWarningSign guifg=#FFAF00
 
 " Command-T
-if &term =~ "xterm" || &term =~ "screen"
-  let g:CommandTCancelMap = ['<ESC>', '<C-c>']
-endif
-
+let g:CommandTCancelMap = ['<ESC>', '<C-c>']
 
 " Lightline
 let g:lightline = {
@@ -153,10 +150,13 @@ let g:lightline = {
 \  }
 \}
 
-function! LightLineFilename()
+function! LightLineFilename() 
   let parent = split(expand('%:p:h'), '/')[-1]
+  let child = expand('%:t')
 
-  return join([parent, expand('%:t')], '/')
+  return match(child, 'Command-T') ==# 0 ? child :
+      \  child ==# '' ? '[No Name]' :
+      \  join([parent, child], '/')
 endfunction
 
 
