@@ -72,11 +72,16 @@ set wildmode=list:longest
 " ===============
 
 inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
-map <SPACE> <leader>
+map <C-l> :nohl<CR>
+map <C-h> :e #<CR>
+map <Space> <leader>
 map <leader>s :source ~/.config/nvim/init.vim<CR>
 map <leader>x :x
 map <leader>q :q
 map <leader>w :w
+map <leader>e :e<Space>
+map <leader>c :cd<Space>
+map <leader>h :cd %:h<CR>
 nmap <leader>aj :ALENext<CR>
 nmap <leader>ak :ALEPrevious<CR>
 
@@ -101,7 +106,7 @@ let g:LanguageClient_serverCommands = {
 " Deoplete
 let g:deoplete#enable_at_startup = 1
 call deoplete#custom#option({
-\  'auto_complete_delay': 0,
+\  'auto_complete_delay': 50,
 \})
 
 " Emmet
