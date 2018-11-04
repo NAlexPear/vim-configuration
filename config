@@ -78,6 +78,7 @@ map <leader>s :source ~/.vimrc<CR>
 map <leader>x :x
 map <leader>q :q
 map <leader>w :w
+map <C-l> :nohl<CR>
 
 let &t_SI = "\<Esc>[6 q"
 let &t_SR = "\<Esc>[4 q"

@@ -72,18 +72,23 @@ set wildmode=list:longest
 " ===============
 
 inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
-map <C-l> :nohl<CR>
+map ; :
+noremap ;; ;
 map <C-h> :e #<CR>
+map <C-l> :nohl<CR>
 map <Space> <leader>
 map <leader>s :source ~/.config/nvim/init.vim<CR>
-map <leader>x :x
-map <leader>q :q
-map <leader>w :w
+map <leader>x :x<CR>
+map <leader>q :q<CR>
+map <leader>w :w<CR>
+map <leader>d :!<Space>
 map <leader>e :e<Space>
 map <leader>c :cd<Space>
 map <leader>h :cd %:h<CR>
 nmap <leader>aj :ALENext<CR>
 nmap <leader>ak :ALEPrevious<CR>
+nmap <leader>ad :ALEDetail<CR>
+nmap <leader>ai :ALEInfo<CR>
 
 
 " Language Servers
