@@ -89,6 +89,8 @@ nmap <leader>aj :ALENext<CR>
 nmap <leader>ak :ALEPrevious<CR>
 nmap <leader>ad :ALEDetail<CR>
 nmap <leader>ai :ALEInfo<CR>
+nnoremap <silent> <leader>= :exe "vertical resize " . (winwidth(0) * 3/2)<CR>
+nnoremap <silent> <leader>- :exe "vertical resize " . (winwidth(0) * 2/3)<CR>
 
 
 " Language Servers
@@ -127,7 +129,7 @@ let g:user_emmet_settings = {
 let g:ale_linters = {
 \   'javascript': ['eslint', 'tsserver'],
 \   'python': ['flake8'],
-\   'rust': ['rustc'],
+\   'rust': ['rls', 'cargo', 'rustc'],
 \}
 
 let g:ale_fixers = {
@@ -140,6 +142,7 @@ let g:ale_pattern_options = {
 \   '.*\amp.html$': {'ale_enabled': 0},
 \}
 
+let g:ale_cargo_use_clippy = 1
 let g:ale_sign_column_always = 1
 let g:ale_fix_on_save = 1
 let g:ale_completion_enabled = 0
@@ -177,7 +180,7 @@ endfunction
 let g:elm_setup_keybindings = 0
 
 " Ruby
-let g:ruby_host_prog = '~/.gem/ruby/2.5.0/bin/neovim-ruby-host'
+" let g:ruby_host_prog = '~/.gem/ruby/2.5.0/bin/neovim-ruby-host'
 
 " SQL
 let g:sql_type_default = 'pgsql'
