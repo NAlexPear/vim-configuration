@@ -133,6 +133,7 @@ let g:ale_linters = {
 \}
 
 let g:ale_fixers = {
+\   'elm': ['format'],
 \   'javascript': ['eslint'],
 \   'python': ['autopep8'],
 \   'rust': ['rustfmt'],
@@ -155,6 +156,7 @@ hi ALEWarningSign guifg=#FFAF00
 
 " Command-T
 let g:CommandTCancelMap = ['<ESC>', '<C-c>']
+let g:CommandTWildIgnore = "**/*.jpg,**/*.png,*/dist,node_modules,elm-stuff,*/target,*/tmp"
 
 " Lightline
 let g:lightline = {
