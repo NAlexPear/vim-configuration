@@ -24,6 +24,9 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'Shougo/deoplete.nvim', {
   \  'do': ':UpdateRemotePlugins'
   \}
+  Plug 'styled-components/vim-styled-components', {
+  \  'branch': 'main'
+  \}
   Plug 'tpope/vim-commentary'
   Plug 'tpope/vim-surround'
   Plug 'wincent/command-t', {
