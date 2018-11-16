@@ -82,6 +82,7 @@ noremap ;; ;
 map <C-h> :e #<CR>
 map <C-l> :nohl<CR>
 map <Space> <leader>
+map <leader>r :%s/
 map <leader>s :source ~/.config/nvim/init.vim<CR>
 map <leader>x :x<CR>
 map <leader>q :q<CR>
@@ -93,6 +94,7 @@ map <leader>h :cd %:h<CR>
 nmap <leader>aj :ALENext<CR>
 nmap <leader>ak :ALEPrevious<CR>
 nmap <leader>ad :ALEDetail<CR>
+nmap <leader>ah :ALEHover<CR>
 nmap <leader>ai :ALEInfo<CR>
 nnoremap <silent> <leader>= :exe "vertical resize " . (winwidth(0) * 3/2)<CR>
 nnoremap <silent> <leader>- :exe "vertical resize " . (winwidth(0) * 2/3)<CR>
@@ -105,9 +107,10 @@ set completefunc=LanguageClient#complete
 
 let g:LanguageClient_diagnosticsEnable = 0
 let g:LanguageClient_serverCommands = {
-\  'rust': ['rustup', 'run', 'nightly', 'rls'],
 \  'javascript': ['typescript-language-server', '--stdio'],
 \  'javascript.jsx': ['typescript-language-server', '--stdio'],
+\  'python': ['pyls'],
+\  'rust': ['rustup', 'run', 'nightly', 'rls'],
 \}
 
 
@@ -132,7 +135,7 @@ let g:user_emmet_settings = {
 
 " ALE
 let g:ale_linters = {
-\   'javascript': ['eslint', 'tsserver'],
+\   'javascript': ['eslint'],
 \   'python': ['flake8'],
 \   'rust': ['rls', 'cargo', 'rustc'],
 \}
@@ -161,7 +164,7 @@ hi ALEWarningSign guifg=#FFAF00
 
 " Command-T
 let g:CommandTCancelMap = ['<ESC>', '<C-c>']
-let g:CommandTWildIgnore = "**/*.jpg,**/*.png,*/dist,node_modules,elm-stuff,*/target,*/tmp"
+let g:CommandTWildIgnore = "**/*.jpg,**/*.png,*.pyc,*/dist,*/public,node_modules,elm-stuff,*/target,*/tmp"
 
 " Lightline
 let g:lightline = {
@@ -191,6 +194,4 @@ let g:ruby_host_prog = '/usr/local/opt/ruby/lib/ruby/gems/2.5.0/bin/neovim-ruby-
 
 " SQL
 let g:sql_type_default = 'pgsql'
-
-
 
