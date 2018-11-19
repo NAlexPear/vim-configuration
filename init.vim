@@ -28,6 +28,7 @@ call plug#begin('~/.config/nvim/plugged')
   \  'branch': 'main'
   \}
   Plug 'tpope/vim-commentary'
+  Plug 'tpope/vim-repeat'
   Plug 'tpope/vim-surround'
   Plug 'wincent/command-t', {
   \ 'do': 'cd ~/.config/nvim/plugged/command-t/ruby/command-t/ext/command-t && ruby extconf.rb && make'
