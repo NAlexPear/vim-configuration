@@ -16,6 +16,7 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'ElmCast/elm-vim'
   Plug 'itchyny/lightline.vim'
   Plug 'jiangmiao/auto-pairs'
+  Plug 'jremmen/vim-ripgrep'
   Plug 'pangloss/vim-javascript'
   Plug 'mattn/emmet-vim'
   Plug 'mxw/vim-jsx'
@@ -27,6 +28,7 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'styled-components/vim-styled-components', {
   \  'branch': 'main'
   \}
+  Plug 'tpope/vim-fugitive'
   Plug 'tpope/vim-commentary'
   Plug 'tpope/vim-repeat'
   Plug 'tpope/vim-surround'
@@ -55,8 +57,6 @@ hi NonText guifg=Background
 set completeopt=longest,menuone,noinsert
 set expandtab
 set fillchars+=vert:\|
-set grepformat^=%f:%l:%c:%m
-set grepprg=rg\ -S\ --vimgrep
 set hidden
 set nowrap
 set number
@@ -92,6 +92,7 @@ map <leader>d :!<Space>
 map <leader>e :e<Space>
 map <leader>c :cd<Space>
 map <leader>h :cd %:h<CR>
+map <leader>f :Rg<Space>
 nmap <leader>aj :ALENext<CR>
 nmap <leader>ak :ALEPrevious<CR>
 nmap <leader>ad :ALEDetail<CR>
