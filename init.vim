@@ -28,8 +28,9 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'styled-components/vim-styled-components', {
   \  'branch': 'main'
   \}
-  Plug 'tpope/vim-fugitive'
   Plug 'tpope/vim-commentary'
+  Plug 'tpope/vim-fugitive'
+  Plug 'tpope/vim-markdown'
   Plug 'tpope/vim-repeat'
   Plug 'tpope/vim-surround'
   Plug 'wincent/command-t', {
@@ -61,6 +62,7 @@ set hidden
 set nowrap
 set number
 set relativenumber
+set scrolloff=3
 set shell=zsh
 set shiftwidth=2
 set showmatch
@@ -72,7 +74,8 @@ set splitright
 set termguicolors
 set ttimeoutlen=50
 set wildignorecase
-set wildmode=list:longest
+set wildmode=list,longest,full
+set wildmenu
 
 " KEYMAPS
 " ===============
@@ -197,3 +200,6 @@ let g:ruby_host_prog = '/usr/local/opt/ruby/lib/ruby/gems/2.5.0/bin/neovim-ruby-
 " SQL
 let g:sql_type_default = 'pgsql'
 
+" Markdown
+let g:markdown_fenced_languages = ['python', 'ruby', 'javascript', 'bash=sh']
+let g:markdown_syntax_conceal = 0
