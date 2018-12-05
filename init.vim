@@ -140,7 +140,7 @@ let g:user_emmet_settings = {
 
 " ALE
 let g:ale_linters = {
-\   'javascript': ['eslint'],
+\   'javascript': ['eslint', 'flow'],
 \   'python': ['flake8'],
 \   'rust': ['rls', 'cargo', 'rustc'],
 \}
