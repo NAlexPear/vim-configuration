@@ -39,7 +39,6 @@ call plug#end()
 
 " THEME
 " =====================
-
 filetype plugin indent on
 syntax on
 
@@ -154,6 +153,7 @@ let g:ale_pattern_options = {
 \   '.*\amp.html$': {'ale_enabled': 0},
 \}
 
+let g:ale_python_flake8_options = '--ignore E501'
 let g:ale_cargo_use_clippy = 1
 let g:ale_sign_column_always = 1
 let g:ale_fix_on_save = 1
