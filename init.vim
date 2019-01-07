@@ -33,15 +33,12 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'tpope/vim-markdown'
   Plug 'tpope/vim-repeat'
   Plug 'tpope/vim-surround'
-  Plug 'wincent/command-t', {
-  \ 'do': 'cd ~/.config/nvim/plugged/command-t/ruby/command-t/ext/command-t && ruby extconf.rb && make'
-  \}
+  Plug 'wincent/command-t'
   Plug 'w0rp/ale'
 call plug#end()
 
 " THEME
 " =====================
-
 filetype plugin indent on
 syntax on
 
@@ -140,7 +137,7 @@ let g:user_emmet_settings = {
 
 " ALE
 let g:ale_linters = {
-\   'javascript': ['eslint'],
+\   'javascript': ['eslint', 'flow'],
 \   'python': ['flake8'],
 \   'rust': ['rls', 'cargo', 'rustc'],
 \}
@@ -156,6 +153,7 @@ let g:ale_pattern_options = {
 \   '.*\amp.html$': {'ale_enabled': 0},
 \}
 
+let g:ale_python_flake8_options = '--ignore E501'
 let g:ale_cargo_use_clippy = 1
 let g:ale_sign_column_always = 1
 let g:ale_fix_on_save = 1
@@ -193,9 +191,6 @@ endfunction
 
 " Elm
 let g:elm_setup_keybindings = 0
-
-" Ruby
-let g:ruby_host_prog = '/usr/local/opt/ruby/lib/ruby/gems/2.5.0/bin/neovim-ruby-host'
 
 " SQL
 let g:sql_type_default = 'pgsql'
