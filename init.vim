@@ -18,8 +18,10 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'jiangmiao/auto-pairs'
   Plug 'jremmen/vim-ripgrep'
   Plug 'pangloss/vim-javascript'
+  Plug 'peitalin/vim-jsx-typescript'
   Plug 'mattn/emmet-vim'
   Plug 'mxw/vim-jsx'
+  Plug 'leafgarland/typescript-vim'
   Plug 'lifepillar/pgsql.vim'
   Plug 'rust-lang/rust.vim'
   Plug 'Shougo/deoplete.nvim', {
@@ -111,6 +113,7 @@ let g:LanguageClient_diagnosticsEnable = 0
 let g:LanguageClient_serverCommands = {
 \  'javascript': ['typescript-language-server', '--stdio'],
 \  'javascript.jsx': ['typescript-language-server', '--stdio'],
+\  'typescript': ['typescript-language-server', '--stdio'],
 \  'python': ['pyls'],
 \  'rust': ['rustup', 'run', 'nightly', 'rls'],
 \}
@@ -137,7 +140,8 @@ let g:user_emmet_settings = {
 
 " ALE
 let g:ale_linters = {
-\   'javascript': ['eslint', 'flow'],
+\   'javascript': ['eslint', 'tslint'],
+\   'typescript': ['eslint', 'tslint'],
 \   'python': ['flake8'],
 \   'rust': ['rls', 'cargo', 'rustc'],
 \}
@@ -145,6 +149,7 @@ let g:ale_linters = {
 let g:ale_fixers = {
 \   'elm': ['format'],
 \   'javascript': ['eslint'],
+\   'typescript': ['eslint'],
 \   'python': ['autopep8'],
 \   'rust': ['rustfmt'],
 \}
@@ -193,7 +198,7 @@ endfunction
 let g:elm_setup_keybindings = 0
 
 " Ruby
-let g:ruby_host_prog = '/usr/local/opt/ruby/lib/ruby/gems/2.5.0/bin/neovim-ruby-host'
+" let g:ruby_host_prog = '/usr/local/opt/ruby/lib/ruby/gems/2.5.0/bin/neovim-ruby-host'
 
 " SQL
 let g:sql_type_default = 'pgsql'
