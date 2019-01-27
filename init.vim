@@ -14,21 +14,18 @@ call plug#begin('~/.config/nvim/plugged')
   \  'do': 'bash install.sh',
   \}
   Plug 'ElmCast/elm-vim'
+  Plug 'HerringtonDarkholme/yats.vim'
   Plug 'itchyny/lightline.vim'
   Plug 'jiangmiao/auto-pairs'
+  Plug 'jparise/vim-graphql'
   Plug 'jremmen/vim-ripgrep'
   Plug 'pangloss/vim-javascript'
-  Plug 'peitalin/vim-jsx-typescript'
   Plug 'mattn/emmet-vim'
   Plug 'mxw/vim-jsx'
-  Plug 'leafgarland/typescript-vim'
   Plug 'lifepillar/pgsql.vim'
   Plug 'rust-lang/rust.vim'
   Plug 'Shougo/deoplete.nvim', {
   \  'do': ':UpdateRemotePlugins'
-  \}
-  Plug 'styled-components/vim-styled-components', {
-  \  'branch': 'main'
   \}
   Plug 'tpope/vim-commentary'
   Plug 'tpope/vim-fugitive'
@@ -100,6 +97,8 @@ nmap <leader>ak :ALEPrevious<CR>
 nmap <leader>ad :ALEDetail<CR>
 nmap <leader>ah :ALEHover<CR>
 nmap <leader>ai :ALEInfo<CR>
+nmap <leader>ag :ALEGoToDefinition<CR>
+nmap <leader>af :ALEFindReferences<CR>
 nnoremap <silent> <leader>= :exe "vertical resize " . (winwidth(0) * 3/2)<CR>
 nnoremap <silent> <leader>- :exe "vertical resize " . (winwidth(0) * 2/3)<CR>
 
@@ -114,6 +113,7 @@ let g:LanguageClient_serverCommands = {
 \  'javascript': ['typescript-language-server', '--stdio'],
 \  'javascript.jsx': ['typescript-language-server', '--stdio'],
 \  'typescript': ['typescript-language-server', '--stdio'],
+\  'typescript.tsx': ['typescript-language-server', '--stdio'],
 \  'python': ['pyls'],
 \  'rust': ['rustup', 'run', 'nightly', 'rls'],
 \}
@@ -140,9 +140,9 @@ let g:user_emmet_settings = {
 
 " ALE
 let g:ale_linters = {
-\   'javascript': ['eslint', 'tslint'],
-\   'typescript': ['eslint', 'tslint'],
-\   'python': ['flake8'],
+\   'javascript': ['eslint', 'tsserver'],
+\   'typescript': ['eslint', 'tsserver'],
+\   'python': ['flake8', 'pyls'],
 \   'rust': ['rls', 'cargo', 'rustc'],
 \}
 
@@ -150,7 +150,7 @@ let g:ale_fixers = {
 \   'elm': ['format'],
 \   'javascript': ['eslint'],
 \   'typescript': ['eslint'],
-\   'python': ['autopep8'],
+\   'python': ['yapf'],
 \   'rust': ['rustfmt'],
 \}
 
@@ -198,7 +198,7 @@ endfunction
 let g:elm_setup_keybindings = 0
 
 " Ruby
-" let g:ruby_host_prog = '/usr/local/opt/ruby/lib/ruby/gems/2.5.0/bin/neovim-ruby-host'
+let g:ruby_host_prog = '/usr/local/lib/ruby/gems/2.6.0/bin/neovim-ruby-host'
 
 " SQL
 let g:sql_type_default = 'pgsql'
