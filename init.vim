@@ -18,7 +18,10 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'itchyny/lightline.vim'
   Plug 'jiangmiao/auto-pairs'
   Plug 'jparise/vim-graphql'
-  Plug 'jremmen/vim-ripgrep'
+  Plug 'junegunn/fzf', {
+  \  'do': './install --bin'
+  \}
+  Plug 'junegunn/fzf.vim'
   Plug 'pangloss/vim-javascript'
   Plug 'mattn/emmet-vim'
   Plug 'mxw/vim-jsx'
@@ -32,7 +35,6 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'tpope/vim-markdown'
   Plug 'tpope/vim-repeat'
   Plug 'tpope/vim-surround'
-  Plug 'wincent/command-t'
   Plug 'w0rp/ale'
 call plug#end()
 
@@ -51,6 +53,7 @@ hi NonText guifg=Background
 " CORE 
 " =====================
 
+set backupcopy=yes
 set completeopt=longest,menuone,noinsert
 set expandtab
 set fillchars+=vert:\|
@@ -90,8 +93,11 @@ map <leader>w :w<CR>
 map <leader>d :!<Space>
 map <leader>e :e<Space>
 map <leader>c :cd<Space>
-map <leader>h :cd %:h<CR>
-map <leader>f :Rg<Space>
+map <silent> <leader>ff :Rg<Space>
+map <silent> <leader>f :Lines<CR>
+map <silent> <leader>t :FZF<CR>
+map <silent> <leader>b :Buffers<CR>
+map <silent> <leader>h :History:<CR>
 nmap <leader>aj :ALENext<CR>
 nmap <leader>ak :ALEPrevious<CR>
 nmap <leader>ad :ALEDetail<CR>
@@ -170,10 +176,6 @@ hi clear ALEWarningSign
 hi ALEErrorSign guifg=#C5735E
 hi ALEWarningSign guifg=#FFAF00
 
-" Command-T
-let g:CommandTCancelMap = ['<ESC>', '<C-c>']
-let g:CommandTWildIgnore = "**/*.jpg,**/*.png,*.pyc,*/dist,*/public,node_modules,elm-stuff,*/target,*/tmp"
-
 " Lightline
 let g:lightline = {
 \'component_function': {
@@ -196,6 +198,9 @@ endfunction
 
 " Elm
 let g:elm_setup_keybindings = 0
+
+" Ruby
+let g:ruby_host_prog = '$HOME/.gem/ruby/2.6.0/bin/neovim-ruby-host'
 
 " SQL
 let g:sql_type_default = 'pgsql'
