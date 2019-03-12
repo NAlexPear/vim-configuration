@@ -199,9 +199,6 @@ endfunction
 " Elm
 let g:elm_setup_keybindings = 0
 
-" Ruby
-let g:ruby_host_prog = '$HOME/.gem/ruby/2.6.0/bin/neovim-ruby-host'
-
 " SQL
 let g:sql_type_default = 'pgsql'
 
