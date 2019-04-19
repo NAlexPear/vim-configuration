@@ -149,7 +149,7 @@ let g:ale_linters = {
 \   'javascript': ['eslint', 'tsserver'],
 \   'typescript': ['eslint', 'tsserver'],
 \   'python': ['flake8', 'pyls'],
-\   'rust': ['rls', 'cargo', 'rustc'],
+\   'rust': ['rls'],
 \}
 
 let g:ale_fixers = {
@@ -165,7 +165,7 @@ let g:ale_pattern_options = {
 \}
 
 let g:ale_python_flake8_options = '--ignore E501'
-let g:ale_cargo_use_clippy = 1
+let g:ale_rust_rls_config = {'rust': {'clippy_preference': 'on'}}
 let g:ale_sign_column_always = 1
 let g:ale_fix_on_save = 1
 let g:ale_completion_enabled = 0
