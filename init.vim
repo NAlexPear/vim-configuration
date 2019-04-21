@@ -149,7 +149,7 @@ let g:ale_linters = {
 \   'javascript': ['eslint', 'tsserver'],
 \   'typescript': ['eslint', 'tsserver'],
 \   'python': ['flake8', 'pyls'],
-\   'rust': ['rls', 'cargo', 'rustc'],
+\   'rust': ['rls'],
 \}
 
 let g:ale_fixers = {
@@ -165,7 +165,7 @@ let g:ale_pattern_options = {
 \}
 
 let g:ale_python_flake8_options = '--ignore E501'
-let g:ale_cargo_use_clippy = 1
+let g:ale_rust_rls_config = {'rust': {'clippy_preference': 'on'}}
 let g:ale_sign_column_always = 1
 let g:ale_fix_on_save = 1
 let g:ale_completion_enabled = 0
@@ -175,6 +175,9 @@ hi clear ALEErrorSign
 hi clear ALEWarningSign
 hi ALEErrorSign guifg=#C5735E
 hi ALEWarningSign guifg=#FFAF00
+hi ALEError guisp=#C5735E gui=undercurl
+hi ALEWarn guisp=#FFAF00 gui=undercurl
+hi ALEInfo guibg=#353534
 
 " Lightline
 let g:lightline = {
@@ -187,9 +190,7 @@ function! LightLineFilename()
   let parent = split(expand('%:p:h'), '/')[-1]
   let child = expand('%:t')
 
-  return match(child, 'Command-T') ==# 0 ? child :
-      \  child ==# '' ? '[No Name]' :
-      \  join([parent, child], '/')
+  return child ==# '' ? '[No Name]' : join([parent, child], '/')
 endfunction
 
 
