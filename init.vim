@@ -18,9 +18,6 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'itchyny/lightline.vim'
   Plug 'jiangmiao/auto-pairs'
   Plug 'jparise/vim-graphql'
-  Plug 'junegunn/fzf', {
-  \  'do': './install --bin'
-  \}
   Plug 'junegunn/fzf.vim'
   Plug 'pangloss/vim-javascript'
   Plug 'mattn/emmet-vim'
@@ -95,7 +92,7 @@ map <leader>e :e<Space>
 map <leader>c :cd<Space>
 map <silent> <leader>ff :Rg<Space>
 map <silent> <leader>f :Lines<CR>
-map <silent> <leader>t :FZF<CR>
+map <silent> <leader>t :Files<CR>
 map <silent> <leader>b :Buffers<CR>
 map <silent> <leader>h :History:<CR>
 nmap <leader>aj :ALENext<CR>
@@ -121,7 +118,7 @@ let g:LanguageClient_serverCommands = {
 \  'typescript': ['typescript-language-server', '--stdio'],
 \  'typescript.tsx': ['typescript-language-server', '--stdio'],
 \  'python': ['pyls'],
-\  'rust': ['rustup', 'run', 'nightly', 'rls'],
+\  'rust': ['rustup', 'run', 'stable', 'rls'],
 \}
 
 
@@ -193,6 +190,8 @@ function! LightLineFilename()
   return child ==# '' ? '[No Name]' : join([parent, child], '/')
 endfunction
 
+" FZF
+let $FZF_DEFAULT_COMMAND = 'fd --type f'
 
 " LANGUAGES 
 " ==================
