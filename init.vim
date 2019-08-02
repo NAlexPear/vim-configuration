@@ -16,8 +16,10 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'ElmCast/elm-vim'
   Plug 'HerringtonDarkholme/yats.vim'
   Plug 'itchyny/lightline.vim'
+  Plug 'janko/vim-test'
   Plug 'jiangmiao/auto-pairs'
   Plug 'jparise/vim-graphql'
+  Plug '/usr/local/opt/fzf'
   Plug 'junegunn/fzf.vim'
   Plug 'pangloss/vim-javascript'
   Plug 'mattn/emmet-vim'
@@ -45,6 +47,34 @@ colorscheme spacegray
 hi SignColumn guibg=Background
 hi VertSplit guibg=Background
 hi NonText guifg=Background
+
+" black
+let g:terminal_color_0='#2C2F33'
+let g:terminal_color_8='#4B5056'
+
+" red
+let g:terminal_color_1='#B04C50'
+let g:terminal_color_9='#B04C50'
+
+" green
+let g:terminal_color_2='#919652'
+let g:terminal_color_10='#94985B'
+
+" yellow
+let g:terminal_color_3='#E2995C'
+let g:terminal_color_11='#E2995C'
+
+" blue
+let g:terminal_color_4='#66899D'
+let g:terminal_color_12='#66899D'
+
+" magenta
+let g:terminal_color_5='#8D6494'
+let g:terminal_color_13='#8D6494'
+
+" cyan
+let g:terminal_color_6='#527C77'
+let g:terminal_color_14='#527C77'
 
 
 " CORE 
@@ -104,6 +134,7 @@ nmap <leader>ag :ALEGoToDefinition<CR>
 nmap <leader>af :ALEFindReferences<CR>
 nnoremap <silent> <leader>= :exe "vertical resize " . (winwidth(0) * 3/2)<CR>
 nnoremap <silent> <leader>- :exe "vertical resize " . (winwidth(0) * 2/3)<CR>
+nmap <silent> <C-n> :TestNearest<CR>
 
 
 " Language Servers
@@ -205,3 +236,8 @@ let g:sql_type_default = 'pgsql'
 " Markdown
 let g:markdown_fenced_languages = ['python', 'ruby', 'javascript', 'bash=sh']
 let g:markdown_syntax_conceal = 0
+
+" TESTING
+" ==================
+
+let test#strategy = 'neovim'
