@@ -9,9 +9,8 @@ endif
 
 call plug#begin('~/.config/nvim/plugged')
   Plug 'ajh17/Spacegray.vim'
-  Plug 'autozimu/LanguageClient-neovim', {
-  \  'branch': 'next',
-  \  'do': 'bash install.sh',
+  Plug 'jonhoo/ale', {
+  \  'branch': 'rust-analyzer'
   \}
   Plug 'ElmCast/elm-vim'
   Plug 'HerringtonDarkholme/yats.vim'
@@ -19,7 +18,6 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'janko/vim-test'
   Plug 'jiangmiao/auto-pairs'
   Plug 'jparise/vim-graphql'
-  Plug '/usr/local/opt/fzf'
   Plug 'junegunn/fzf.vim'
   Plug 'pangloss/vim-javascript'
   Plug 'mattn/emmet-vim'
@@ -34,7 +32,6 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'tpope/vim-markdown'
   Plug 'tpope/vim-repeat'
   Plug 'tpope/vim-surround'
-  Plug 'w0rp/ale'
 call plug#end()
 
 " THEME
@@ -102,6 +99,7 @@ set ttimeoutlen=50
 set wildignorecase
 set wildmode=list,longest,full
 set wildmenu
+set wildoptions+=pum
 
 " KEYMAPS
 " ===============
@@ -114,6 +112,7 @@ map <C-l> :nohl<CR>
 map <Space> <leader>
 map <leader>r :%s/
 map <leader>s :source ~/.config/nvim/init.vim<CR>
+map <leader>ss :source ~/.config/nvim/sessions/Session.vim<CR>
 map <leader>x :x<CR>
 map <leader>q :q<CR>
 map <leader>w :w<CR>
@@ -135,23 +134,7 @@ nmap <leader>af :ALEFindReferences<CR>
 nnoremap <silent> <leader>= :exe "vertical resize " . (winwidth(0) * 3/2)<CR>
 nnoremap <silent> <leader>- :exe "vertical resize " . (winwidth(0) * 2/3)<CR>
 nmap <silent> <C-n> :TestNearest<CR>
-
-
-" Language Servers
-" ================
-
-set completefunc=LanguageClient#complete
-
-let g:LanguageClient_diagnosticsEnable = 0
-let g:LanguageClient_serverCommands = {
-\  'javascript': ['typescript-language-server', '--stdio'],
-\  'javascript.jsx': ['typescript-language-server', '--stdio'],
-\  'typescript': ['typescript-language-server', '--stdio'],
-\  'typescript.tsx': ['typescript-language-server', '--stdio'],
-\  'python': ['pyls'],
-\  'rust': ['rustup', 'run', 'stable', 'rls'],
-\}
-
+nmap <C-s> :mks! ~/.config/nvim/sessions/Session.vim<CR>
 
 
 " PLUGINS
@@ -178,6 +161,7 @@ let g:ale_linters = {
 \   'typescript': ['eslint', 'tsserver'],
 \   'python': ['flake8', 'pyls'],
 \   'rust': ['rls'],
+\   'yaml': ['prettier'],
 \}
 
 let g:ale_fixers = {
@@ -186,17 +170,19 @@ let g:ale_fixers = {
 \   'typescript': ['eslint'],
 \   'python': ['yapf'],
 \   'rust': ['rustfmt'],
+\   'yaml': ['prettier'],
 \}
 
 let g:ale_pattern_options = {
 \   '.*\amp.html$': {'ale_enabled': 0},
+\   '.*\Tiltfile$': {'ale_enabled': 0},
 \}
 
 let g:ale_python_flake8_options = '--ignore E501'
 let g:ale_rust_rls_config = {'rust': {'clippy_preference': 'on'}}
 let g:ale_sign_column_always = 1
 let g:ale_fix_on_save = 1
-let g:ale_completion_enabled = 0
+let g:ale_completion_enabled = 1
 let g:ale_sign_warning = "●"
 
 hi clear ALEErrorSign
