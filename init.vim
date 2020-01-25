@@ -9,24 +9,20 @@ endif
 
 call plug#begin('~/.config/nvim/plugged')
   Plug 'ajh17/Spacegray.vim'
-  Plug 'jonhoo/ale', {
-  \  'branch': 'rust-analyzer'
-  \}
   Plug 'ElmCast/elm-vim'
   Plug 'HerringtonDarkholme/yats.vim'
   Plug 'itchyny/lightline.vim'
   Plug 'janko/vim-test'
-  Plug 'jiangmiao/auto-pairs'
   Plug 'jparise/vim-graphql'
   Plug 'junegunn/fzf.vim'
   Plug 'pangloss/vim-javascript'
   Plug 'mattn/emmet-vim'
   Plug 'mxw/vim-jsx'
+  Plug 'neoclide/coc.nvim', {
+  \  'branch': 'release'
+  \}
   Plug 'lifepillar/pgsql.vim'
   Plug 'rust-lang/rust.vim'
-  Plug 'Shougo/deoplete.nvim', {
-  \  'do': ':UpdateRemotePlugins'
-  \}
   Plug 'tpope/vim-commentary'
   Plug 'tpope/vim-fugitive'
   Plug 'tpope/vim-markdown'
@@ -77,15 +73,17 @@ let g:terminal_color_14='#527C77'
 " CORE 
 " =====================
 
-set backupcopy=yes
-set completeopt=longest,menuone,noinsert
+set cmdheight=2
 set expandtab
 set fillchars+=vert:\|
 set hidden
+set nobackup
 set nowrap
+set nowritebackup
 set number
 set relativenumber
 set scrolloff=3
+set shortmess+=c
 set shell=zsh
 set shiftwidth=2
 set showmatch
@@ -97,14 +95,52 @@ set splitright
 set termguicolors
 set ttimeoutlen=50
 set wildignorecase
-set wildmode=list,longest,full
-set wildmenu
-set wildoptions+=pum
+
+" FUNCTIONS
+" ===============
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+function! LightLineFilename() 
+  let parent = split(expand('%:p:h'), '/')[-1]
+  let child = expand('%:t')
+
+  return child ==# '' ? '[No Name]' : join([parent, child], '/')
+endfunction
+
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  else
+    call CocAction('doHover')
+  endif
+endfunction
+
+
+" COMMANDS
+" ===============
+
+" Use `:Format` to format current buffer
+command! -nargs=0 Format :call CocAction('format')
+
+" use `:OR` for organize import of current buffer
+command! -nargs=0 OR :call CocAction('runCommand', 'editor.action.organizeImport')
+
 
 " KEYMAPS
 " ===============
 
+inoremap <silent><expr> <TAB>
+     \ pumvisible() ? "\<C-n>" :
+     \ <SID>check_back_space() ? "\<TAB>" :
+     \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+
 map ; :
 noremap ;; ;
 map <C-h> :e #<CR>
@@ -124,27 +160,25 @@ map <silent> <leader>f :Lines<CR>
 map <silent> <leader>t :Files<CR>
 map <silent> <leader>b :Buffers<CR>
 map <silent> <leader>h :History:<CR>
-nmap <leader>aj :ALENext<CR>
-nmap <leader>ak :ALEPrevious<CR>
-nmap <leader>ad :ALEDetail<CR>
-nmap <leader>ah :ALEHover<CR>
-nmap <leader>ai :ALEInfo<CR>
-nmap <leader>ag :ALEGoToDefinition<CR>
-nmap <leader>af :ALEFindReferences<CR>
+nmap <silent> <leader>aj <Plug>(coc-diagnostic-next)
+nmap <silent> <leader>ak <Plug>(coc-diagnostic-prev)
+nmap <silent> <leader>at <Plug>(coc-type-definition)
+nmap <silent> <leader>ai <Plug>(coc-implementation)
+nmap <silent> <leader>ad <Plug>(coc-definition)
+nmap <silent> <leader>af <Plug>(coc-references)
 nnoremap <silent> <leader>= :exe "vertical resize " . (winwidth(0) * 3/2)<CR>
 nnoremap <silent> <leader>- :exe "vertical resize " . (winwidth(0) * 2/3)<CR>
 nmap <silent> <C-n> :TestNearest<CR>
 nmap <C-s> :mks! ~/.config/nvim/sessions/Session.vim<CR>
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+xmap if <Plug>(coc-funcobj-i)
+xmap af <Plug>(coc-funcobj-a)
+omap if <Plug>(coc-funcobj-i)
+omap af <Plug>(coc-funcobj-a)
 
 
 " PLUGINS
 " ================
-
-" Deoplete
-let g:deoplete#enable_at_startup = 1
-call deoplete#custom#option({
-\  'auto_complete_delay': 50,
-\})
 
 " Emmet
 imap <expr> <tab> emmet#expandAbbrIntelligent("\<tab>")
@@ -155,57 +189,12 @@ let g:user_emmet_settings = {
 \  },
 \}
 
-" ALE
-let g:ale_linters = {
-\   'javascript': ['eslint', 'tsserver'],
-\   'typescript': ['eslint', 'tsserver'],
-\   'python': ['flake8', 'pyls'],
-\   'rust': ['rls'],
-\   'yaml': ['prettier'],
-\}
-
-let g:ale_fixers = {
-\   'elm': ['format'],
-\   'javascript': ['eslint'],
-\   'typescript': ['eslint'],
-\   'python': ['yapf'],
-\   'rust': ['rustfmt'],
-\   'yaml': ['prettier'],
-\}
-
-let g:ale_pattern_options = {
-\   '.*\amp.html$': {'ale_enabled': 0},
-\   '.*\Tiltfile$': {'ale_enabled': 0},
-\}
-
-let g:ale_python_flake8_options = '--ignore E501'
-let g:ale_rust_rls_config = {'rust': {'clippy_preference': 'on'}}
-let g:ale_sign_column_always = 1
-let g:ale_fix_on_save = 1
-let g:ale_completion_enabled = 1
-let g:ale_sign_warning = "●"
-
-hi clear ALEErrorSign
-hi clear ALEWarningSign
-hi ALEErrorSign guifg=#C5735E
-hi ALEWarningSign guifg=#FFAF00
-hi ALEError guisp=#C5735E gui=undercurl
-hi ALEWarn guisp=#FFAF00 gui=undercurl
-hi ALEInfo guibg=#353534
-
 " Lightline
 let g:lightline = {
 \'component_function': {
 \    'filename': 'LightLineFilename'
 \  }
 \}
-
-function! LightLineFilename() 
-  let parent = split(expand('%:p:h'), '/')[-1]
-  let child = expand('%:t')
-
-  return child ==# '' ? '[No Name]' : join([parent, child], '/')
-endfunction
 
 " FZF
 let $FZF_DEFAULT_COMMAND = 'fd --type f'
