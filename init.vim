@@ -152,7 +152,7 @@ map <leader>s :source ~/.config/nvim/init.vim<CR>
 map <leader>ss :source ~/.config/nvim/sessions/Session.vim<CR>
 map <leader>x :x<CR>
 map <leader>q :q<CR>
-map <leader>w :w<CR>
+map <leader>w :Format<CR>:w<CR>
 map <leader>d :!<Space>
 map <leader>e :e<Space>
 map <leader>c :cd<Space>
