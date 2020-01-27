@@ -1,0 +1,5 @@
+{
+  "diagnostic.warningSign": "●",
+  "eslint.autoFixOnSave": true,
+  "typescript.format.enabled": false
+}

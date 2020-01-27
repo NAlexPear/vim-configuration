@@ -86,6 +86,7 @@ set scrolloff=3
 set shortmess+=c
 set shell=zsh
 set shiftwidth=2
+set signcolumn=yes
 set showmatch
 set smartcase
 set smartindent
@@ -179,6 +180,23 @@ omap af <Plug>(coc-funcobj-a)
 
 " PLUGINS
 " ================
+
+" CoC
+augroup mygroup
+  autocmd!
+  " Wrap lines automatically for markdown files
+  autocmd FileType markdown setl wrap linebreak
+  " Setup formatexpr specified filetype(s).
+  autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
+  " Update signature help on jump placeholder
+  autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
+augroup end
+
+hi! CocErrorSign guifg=#C5735E
+hi! CocWarningSign guifg=#FFAF00
+hi! CocError guisp=#C5735E gui=undercurl
+hi! CocWarn guisp=#FFAF00 gui=undercurl
+hi! CocInfo guibg=#353534
 
 " Emmet
 imap <expr> <tab> emmet#expandAbbrIntelligent("\<tab>")
