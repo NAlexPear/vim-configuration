@@ -1,5 +1,16 @@
 {
-  "diagnostic.warningSign": "●",
+  "coc.preferences.formatOnSaveFiletypes": [
+    "css",
+    "javascript",
+    "javascript.jsx",
+    "json",
+    "markdown",
+    "python",
+    "typescript",
+    "typescript.tsx",
+    "rust"
+  ],
   "eslint.autoFixOnSave": true,
+  "diagnostic.warningSign": "●",
   "typescript.format.enabled": false
 }
